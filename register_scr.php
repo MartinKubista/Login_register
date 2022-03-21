@@ -1,65 +1,99 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<link http-equip="Content-Type" cotent="register.html; charset-UTF-8">
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-        <?php
-        session_start();
 
-        $username = "";
-        $email    = "";
-        $errors = array(); 
-
-        $db = mysqli_connect('localhost\register.html', $username, $email, 'registration');
-
-        if (isset($_POST['reg_user'])) {
-
-        $username = mysqli_real_escape_string($db, $_POST['username']);     
-        $email = mysqli_real_escape_string($db, $_POST['email']);
-        $psw = mysqli_real_escape_string($db, $_POST['psw']);
-        $psw_repeat = mysqli_real_escape_string($db, $_POST['psw_repeat']);
-        
+<?php
+require_once("connection.php");
+$isEmpty = false;
+$hasPasswordCertainLength = true;
+$hasPasswordAtLeastOneNumber = true;
+$passwordAreSame = true;
+$usernameOrEmailAlreadyExists = false;
 
 
-        if (empty($username)) { array_push($errors, "Username is required"); }
-        if (empty($email)) { array_push($errors, "Email is required"); }
-        if (empty($psw)) { array_push($errors, "Password is required"); }
-        if ($psw != $psw_repeat) {
-            array_push($errors, "The two passwords do not match");
-        }
+    $meno =  $_POST['username'];
+    $priezvisko =  $_POST['surname'];
+    $email = $_POST['email'];
+    $heslo =  $_POST['psw'];
 
 
-        $user_check_query = "SELECT * FROM users WHERE username='$username' OR email='$email' LIMIT 1";
-        $result = mysqli_query($db, $user_check_query);
-        $user = mysqli_fetch_assoc($result);
-        
-        if ($user) { 
-            if ($user['username'] === $username) {
-            array_push($errors, "Username already exists");
+    if(empty($_POST["email"])){
+        $isEmpty = true;
+    }
+    if(empty($_POST["username"])){
+        $isEmpty = true;
+    }
+    if(empty($_POST["surname"])){
+        $isEmpty = true;
+    }
+    if(empty($_POST["psw"])){
+        $isEmpty = true;
+    }
+    if(empty($_POST["psw-repeat"])){
+        $isEmpty = true;
+    }
+    if($isEmpty == true){
+
+        echo "Nieco si nezadal";
+    }
+    else{
+
+    }
+    if (!preg_match('@[0-9]@', $heslo)) {
+        $hasPasswordAtLeastOneNumber = false;
+        echo "Heslo musi obsahovat aspon jeden ciselny znak" . "<br>";
+    }
+    if (($_POST["psw"]) == ($_POST["psw-repeat"]))
+    {
+        $passwordAreSame = true;
+    }
+    else{
+        $passwordAreSame = false;
+        echo "Hesla sa nezhodujú" . "<br>";
+
+    }
+
+    if(strlen($heslo) < 6){
+        $hasPasswordCertainLength = false;
+        echo "Heslo musi mat minimalne 6 znakov" . "<br>";
+    } 
+    else{
+        $hasPasswordCertainLength = true;
+    }
+    $sql_u = "SELECT * FROM users WHERE Meno='$meno'";
+    $sql_e = "SELECT * FROM users WHERE email='$email'";
+    $res_u = mysqli_query($link, $sql_u);
+    $res_e = mysqli_query($link, $sql_e);
+
+    if (mysqli_num_rows($res_u) > 0) {
+        $usernameOrEmailAlreadyExists = true;
+        echo "Uzivatelske meno uz existuje" . "<br>";
+    }	
+    if(mysqli_num_rows($res_e) > 0){
+        $usernameOrEmailAlreadyExists = true;
+        echo "Email uz bol pouzity" . "<br>"; 
+    }
+
+
+    if($isEmpty == false && $hasPasswordCertainLength == true && $hasPasswordAtLeastOneNumber == true && $passwordAreSame == true  && $usernameOrEmailAlreadyExists == false){
+        $hash = password_hash($heslo, PASSWORD_BCRYPT);
+    
+
+            $sql = "INSERT INTO users (Email, Meno, Priezvisko, Heslo) VALUES ('$email', '$meno','$priezvisko','$hash')";
+
+            if ($link->query($sql) === TRUE) {
+                header('Location: login1.php');
             }
-
-            if ($user['email'] === $email) {
-            array_push($errors, "email already exists");
+            else {
+                echo "Niečo je zle" . "<br>";
             }
+            
+            $link->close();
+            
+        }
+        else{
+            echo "Niečo je zle" . "<br>"; 
+
         }
 
 
-        if (count($errors) == 0) {
-            $password = md5($psw);
+  
 
-            $query = "INSERT INTO users (username, email, password) 
-                    VALUES('$username', '$email', '$password')";
-            mysqli_query($db, $query);
-            $_SESSION['username'] = $username;
-            $_SESSION['success'] = "You are now logged in";
-            header('location: index.php');
-        }
-        }
-        ?>
-</body>
-</html>
+?>

@@ -4,8 +4,10 @@ body{
 
 }
 .container{
-    margin: auto;
+    margin: auto; 
     display: inline-block;
+    padding-left: 3%;
+    padding-right: 3%;
     text-align: left;    
     border: solid 1px;
     background-color:khaki;

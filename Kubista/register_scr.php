@@ -73,10 +73,10 @@ $usernameOrEmailAlreadyExists = false;
 
 
     if($isEmpty == false && $hasPasswordCertainLength == true && $hasPasswordAtLeastOneNumber == true && $passwordAreSame == true  && $usernameOrEmailAlreadyExists == false){
-        $hash = password_hash($heslo, PASSWORD_BCRYPT);
+
     
 
-            $sql = "INSERT INTO users (Email, Meno, Priezvisko, Heslo) VALUES ('$email', '$meno','$priezvisko','$hash')";
+            $sql = "INSERT INTO users (Email, Meno, Priezvisko, Heslo) VALUES ('$email', '$meno','$priezvisko','$heslo')";
 
             if ($link->query($sql) === TRUE) {
                 header('Location: login1.php');

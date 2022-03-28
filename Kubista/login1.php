@@ -1,10 +1,12 @@
 <?php require_once('connection.php');?>
 
+<?php include('./parts/header.php') ?>
+
 <!DOCTYPE html>
 <html>
 <head>
 <title>Login</title>
-  <link rel="stylesheet" href="login1.css" http-equip="Content-Type" >
+  <link rel="stylesheet"  http-equip="Content-Type" >
  
 </head>
 <body>

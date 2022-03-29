@@ -1,15 +1,31 @@
 <?php require_once('connection.php');?>
 
 <?php include('./parts/header.php') ?>
+    <style> 
+       
+      .container{
+        width: 400px;
+          padding-top: 5%; 
+          text-align: center; 
 
+         
+      }
+      h1{
+          text-align: center;   
+      }
+      .klasap{
+          text-align: center;  
+
+      }
+  
+
+  </style> 
+  <?php $error = isset($_GET["message"]) ? $_GET["message"] : "" ?>
     <main class = "container">
-    </main>
-
-
-
 
     <form action="register_scr.php" method="POST" class="container" >          
           <h1>Register</h1>
+          <p>
           <label for="username"><b>Username</b></label>
           <br>
           <input type="text" placeholder="Enter Username" name="username" id="username" required>
@@ -39,6 +55,7 @@
         <div class="containersignin">
           <p>Already have a account? <a href="login1.php">Sign in</a>.</p>
         </div>
+        <p class = "text-damage"><?php echo $error ?></p>
       </form>
       </main>
       <?php include('./parts/footer.php') ?>

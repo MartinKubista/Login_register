@@ -1,31 +1,32 @@
 <?php
+require_once('connection.php');
+$isEmpty = false;
 
-require_once ('connection.php');
+$username = mysqli_real_escape_string($link, $_POST['username']);
+$password = mysqli_real_escape_string($link, $_POST['password']);
+$hash = md5($_POST["password"]);
 
-$uname = $_POST["username"];
-$psw = $_POST["password"];
-
-$sqlu = "SELECT * FROM `users` WHERE Meno = '$uname'";
-$sqlp = "SELECT * FROM `users` WHERE Heslo = '$psw'";
-$id1 = "SELECT User_ID FROM `users` WHERE Meno = '$uname'";
-$id2 = "SELECT User_ID FROM `users` WHERE Heslo = '$psw'";
-$r_u = mysqli_query($link, $sqlu);
-$r_p = mysqli_query($link, $sqlp);
-$r_idu = mysqli_query($link, $id1);
-$r_idp = mysqli_query($link, $id2);
-
-$idu = mysqli_fetch_assoc($r_idu);
-$idp = mysqli_fetch_assoc($r_idp);
-
-if (mysqli_num_rows($r_u) == 1 && mysqli_num_rows($r_p) > 0 && $idu == $idp) {
-    echo "Login successful.";
-    header('Location: index.php');
+if (empty($username)) {
+    $isEmpty = true;
 }
-else{
-    echo "ERROR";
+if (empty($password)) {
+    $isEmpty = true;
 }
 
+if ($isEmpty == true) {
+    echo "Nieco si nezadal" . "<br>";
+}
 
+if ($isEmpty == false) {
+    $query = "SELECT * FROM users WHERE Meno='$username' AND Heslo='$hash'";
+    $results = mysqli_query($link, $query);
+    
+    if (mysqli_num_rows($results) == 1) {
 
-
-
+        echo "Uspesne si sa prihlasil" . "<br>";
+    }
+    else {
+        echo "Zadal si nespravne meno alebo heslo" . "<br>";
+    }
+}
+?>

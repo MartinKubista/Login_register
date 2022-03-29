@@ -47,7 +47,7 @@ $usernameOrEmailAlreadyExists = false;
     else{
         $passwordAreSame = false;
         echo "Hesla sa nezhodujú" . "<br>";
-
+        header('Location: register.php?message=Hesla sa nezhodujú');
     }
 
     if(strlen($heslo) < 6){
@@ -74,10 +74,10 @@ $usernameOrEmailAlreadyExists = false;
 
     if($isEmpty == false && $hasPasswordCertainLength == true && $hasPasswordAtLeastOneNumber == true && $passwordAreSame == true  && $usernameOrEmailAlreadyExists == false){
 
-    
+        $hash = md5("heslo");
 
-            $sql = "INSERT INTO users (Email, Meno, Priezvisko, Heslo) VALUES ('$email', '$meno','$priezvisko','$heslo')";
 
+        $sql = "INSERT INTO users (Email, Meno, Priezvisko, Heslo) VALUES ('$email', '$meno','$priezvisko','$hash')";
             if ($link->query($sql) === TRUE) {
                 header('Location: login1.php');
             }

@@ -26,7 +26,7 @@
           <p><button type="submit">Prihlasit sa</button>
           <p class="text-danger"><?php echo $message ?></p>
 
-          <p>Nemate ucet? <a href="register.php">Zaregistrujte sa</a></p>
+            
         </div>     
       </form>
   </main>

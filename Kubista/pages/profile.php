@@ -4,30 +4,58 @@ include('../parts/header.php');
 include('../scripts/profile_script.php');
 
 ?>
-
-
+  
 <main class="container">
     <h1 class="m-4 text-uppercase">Profil</h1>
-   <ul class="list-group">
-       <li class="list-group-item list-group-item-action active d-flex row">
-           <span class="col-1"> ID.</span>
-           <span class="col-2"> Avatar</span>
-           <span class="col-3"> Username</span>
-           <span class="col-3"> Surname</span>
-           <span class="col-3"> Email</span>
-       </li>
-   </ul>
+   
    <?php foreach ($users as $user) : ?>
-        <li class="list-group-item list-group-item-action d-flex row align-items-center">
-            <span class="text-danger col-1"> <?php echo $user["id"] ?></span>
-            <div class="col-2">
-                <img src="../images/<?php echo $user["avatar"]?>" alt="<?php echo $user["username"]?>" style="width: 100px">
+
+        <div class="row">
+        <div class="col-4"><img src="../images/<?php echo $user["avatar"]?>" alt="<?php echo $user["username"]?>" style="width: 300px"></div>
+        <div class="col-4 align-items-centre ">
+        <div class="row ">
+            <div class="col-3 list-group-item active">
+            ID: 
             </div>
-            <span class="col-3"> <?php echo $user["username"] ?></span>
-            <span class="col-3"> <?php echo $user["surname"] ?></span>
-            <span class="col-3"> <?php echo $user["email"] ?></span>
-        </li>
+            <div class=" col ist-group-item">
+            <span class=""> <?php echo $user["id"] ?></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-3 list-group-item active">
+            Meno: 
+            </div>
+            <div class="col list-group-item">
+            <?php echo $user["username"] ?></span>
+            </div>
+        </div>
+        <div class="row ">
+            <div class="col-3 list-group-item active">
+            Priezvisko:
+            </div>
+            <div class="col list-group-item">
+            <span class=""> <?php echo $user["surname"] ?></span>
+            </div>
+        </div>
+        <div class="row ">
+            <div class="col-3 list-group-item active">
+            Email:
+            </div>
+            <div class="col list-group-item">
+            <span class=""> <?php echo $user["email"] ?></span>
+            </div>
+        </div>
+            
+         </div>
+
         <?php endforeach ?>
-        <a href="../pages/password_change.php" class="btn btn-danger">Zmenit heslo</a>
+
+
+        <div class="position-relative ">
+            <button a href="../pages/password_change.php" type="button" class="position-absolute top-50 end-50 btn btn-outline-dark">Zmenit heslo</button>
+        
+        </div>
 </main>
+
+
 <?php include('../parts/footer.php'); ?>

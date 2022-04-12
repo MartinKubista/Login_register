@@ -51,17 +51,24 @@ if(strlen($password) < 6){
 else{
     $hasPasswordCertainLength = true;
 }
-$s = rand(1,3);
+$s = rand(1,5);
 switch($s) {
     case 1:
         $avatar = "user.png";
         break;
     case 2:
-        $avatar = "200.gif";
+        $avatar = "pepega1.png";
         break;
     case 3:
         $avatar = "sus.png";
-        break;        
+        break;   
+    case 4:
+        $avatar = "pepega.png";
+        break;
+    case 5:
+        $avatar = "lol.gif";
+        break;
+    
 }
 $sql_u = "SELECT * FROM users WHERE username='$username'";
 $sql_e = "SELECT * FROM users WHERE email='$email'";

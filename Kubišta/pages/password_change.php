@@ -12,6 +12,7 @@ include('../parts/header.php');
  
 </style> 
 <?php $message = isset($_GET["message"]) ? $_GET["message"] : "";?>
+<body class="bg-secondary">
 <main>
 <form action="../scripts/password_change_script.php" method="post">
         <div class="container">
@@ -20,13 +21,13 @@ include('../parts/header.php');
           <br>
           <div>
           <p><label for="psw"><b>Stare Heslo</b></label>
-          <br><input type="password" placeholder="Zadajte Stare Heslo" name="psw" id="psw" required>
+          <br><input class="bg-info"type="password" placeholder="Zadajte Stare Heslo" name="psw" id="psw" required>
 
           <p><label for="new-psw"><b>Nove Heslo</b></label>
-          <br><input type="text" placeholder="Zadajte Nove Heslo" name="new-psw" id="new-psw" required>
+          <br><input class="bg-info" type="text" placeholder="Zadajte Nove Heslo" name="new-psw" id="new-psw" required>
           <div>
           <div style = "padding-top: 20px">
-          <p><button type="submit" class="btn btn-danger">Zmenit</button>
+          <p><button type="submit" class="bg-light btn btn-outline-danger">Zmenit</button>
           <p class="text-danger"><?php echo $message ?></p>
           </div>
           <br>
@@ -34,4 +35,5 @@ include('../parts/header.php');
         </div>     
       </form>
 </main>
+</body>
 <?php include('../parts/footer.php'); ?>

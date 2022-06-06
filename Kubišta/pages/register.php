@@ -11,7 +11,7 @@
 <title>Register</title>
 
 
-  <body>
+<body class="bg-secondary">
   <?php include('../parts/header.php');?>
   <?php $message = isset($_GET["message"]) ? $_GET["message"] : "";?>
     <main>
@@ -22,28 +22,28 @@
           <hr>
           <br>
           <p><label for="username"><b>Meno</b></label>
-            <br><input type="text" placeholder="Zadajte Meno" name="username" id="username" required>
+            <br><input class="bg-info" type="text" placeholder="Zadajte Meno" name="username" id="username" required>
 
           <p><label for="surname"><b>Priezvisko</b></label>
-            <br><input type="text" placeholder="Zadajte Priezvisko" name="surname" id="surname" required>
+            <br><input class="bg-info" type="text" placeholder="Zadajte Priezvisko" name="surname" id="surname" required>
 
           <p><label for="email"><b>Email</b></label>
-            <br><input type="text" placeholder="Zadajte Email" name="email" id="email" required>
+            <br><input class="bg-info" type="text" placeholder="Zadajte Email" name="email" id="email" required>
 
           <p><label for="psw"><b>Heslo</b></label>
-            <br><input type="password" placeholder="Zadajte Heslo" name="psw" id="psw" required>
+            <br><input class="bg-info" type="password" placeholder="Zadajte Heslo" name="psw" id="psw" required>
 
           <p><label for="psw-repeat"><b>Heslo znova</b></label>
-            <br><input type="password" placeholder="Znovu Zadajte heslo" name="psw-repeat" id="psw-repeat" required>
+            <br><input class="bg-info" type="password" placeholder="Znovu Zadajte heslo" name="psw-repeat" id="psw-repeat" required>
           <br>
           <br>
-          <p><button type="submit" class="btn btn-outline-danger">Registrovat sa</button>
+          <p><button type="submit" class="bg-light btn btn-outline-danger">Registrovat sa</button>
           <br>
           <br>
           <hr>
           <p>
           <p style="font-weight: bolder;">Uz mate ucet?
-          <p><a href="login.php" class="btn btn-outline-success">Prihlaste sa</a></p>
+          <p><a href="login.php" class="bg-light btn btn-outline-success">Prihlaste sa</a></p>
           <p class="text-danger"><?php echo $message ?></p>
         </div>
 

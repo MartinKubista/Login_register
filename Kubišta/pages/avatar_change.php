@@ -12,7 +12,9 @@ include('../parts/header.php');
   }
 
 </style>
+
 <?php $message = isset($_GET["message"]) ? $_GET["message"] : "";?>
+<body class="bg-secondary">
 <main class>
   <form action="../scripts/avatar_change_script.php" method="post">
     <div class="container">
@@ -24,7 +26,7 @@ include('../parts/header.php');
       <img src="../images/<?php  echo $avatar;?>"  style="width: 300px">
       </div>
       <div style= "margin-bottom: 150px" class="col-4 ">
-      <p><select name="avatar"style="" class="form-select form-select-lg form-select-border-width-2" aria-label=".form-select-lg example">
+      <p><select name="avatar"style="" class="bg-info form-select form-select-lg form-select-border-width-2 " aria-label=".form-select-lg example">
           <option disabled selected>Vyberte avatara</option>
           <option value="monkeyy.jpg">Monkey</option>
           <option value="pepega.jpg">Bagaňa</option>
@@ -34,7 +36,7 @@ include('../parts/header.php');
       </div>
         <br>
         <div>
-      <p><button type="submit" class="btn btn-danger">Zmenit</button>
+      <p><button type="submit" class="bg-light btn btn-outline-danger">Zmenit</button>
       <p class="text-danger"><?php echo $message ?></p>
       </div>
       <br>
@@ -43,3 +45,4 @@ include('../parts/header.php');
  
   </form>
 </main>
+</body>

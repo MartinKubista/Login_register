@@ -3,10 +3,11 @@ require_once('../scripts/connection.php');
 include('../parts/header.php');
 include('../scripts/getUsers.php');
 ?>
-<main class="container">
+<body class="bg-secondary">
+<main class="container ">
     <h1 class="m-4 text-uppercase">Zoznam uživateľov</h1>
-   <ul class="list-group">
-       <li class="list-group-item list-group-item-action d-flex row border border-3 border-dark">
+   <ul class="list-group ">
+       <li class="bg-info list-group-item list-group-item-action d-flex row border border-3 border-dark">
            <span class="col-1 "> ID.</span>
            <span class="col-2"> Avatar</span>
            <span class="col-2"> Username</span>
@@ -16,7 +17,7 @@ include('../scripts/getUsers.php');
        </li>
    </ul>
    <?php foreach ($users as $user) : ?>
-    <li class="list-group-item list-group-item-action d-flex row align-items-center border border-2 border-dark border-top-0">     
+    <li class="bg-info list-group-item list-group-item-action d-flex row align-items-center border border-2 border-dark border-top-0">     
             <span class="text-danger col-1"> <?php echo $user["id"] ?></span>
             <div class="col-2">
                 <img src="../images/<?php echo $user["avatar"]?>" alt="<?php echo $user["username"]?>" style="width: 30px">
@@ -25,8 +26,8 @@ include('../scripts/getUsers.php');
             <span class="col-2"> <?php echo $user["surname"] ?></span>
             <span class="col-2"> <?php echo $user["email"] ?></span>
             <div class="col-2 d-flex justify content-center">
-                <a style="margin-right: 5px" href="../pages/profile.php<?php echo "?user=".$user["id"]; ?>"class=" btn btn-outline-success">Profil</a>
-                <a href="../scripts/delete_script.php?id=<?php echo $user["id"];?>" class=" btn btn-outline-danger mr-2">Zmazať</a>
+                <a style="margin-right: 5px" href="../pages/profile.php<?php echo "?user=".$user["id"]; ?>"class="bg-light btn btn-outline-success">Profil</a>
+                <a href="../scripts/delete_script.php?id=<?php echo $user["id"];?>" class="bg-light btn btn-outline-danger mr-2">Zmazať</a>
             </div>
         </li>
    
@@ -34,4 +35,5 @@ include('../scripts/getUsers.php');
    
    
 </main>
+   </body>
 <?php include('../parts/footer.php'); ?>
